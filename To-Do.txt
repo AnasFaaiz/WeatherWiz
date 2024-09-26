@@ -1,0 +1,8 @@
+Backend Part:
+
+1. Have to connect Mongodb using flask (currently working)...
+2. Store data in mongodb using api from openweather website
+
+Frontend Part:
+
+PLANNING Soon....
