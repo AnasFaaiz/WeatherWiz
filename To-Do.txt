@@ -1,6 +1,6 @@
 Backend Part:
 
-1. Have to connect Mongodb using flask.
+1. Connect mongodb compass to atlas.
 2. Store data in mongodb using api from openweather website
 
 Frontend Part:
