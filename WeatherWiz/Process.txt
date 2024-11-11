@@ -1,0 +1,11 @@
+Steps for Creating WeatherWiz:
+
+1. Create a django app name "WeatherWiz"
+             ```django-admin startproject WeatherWiz```
+2. Next go into the file WeatherWiz. By using "cd"
+3. Start the app by
+            ``` python manage.py startup Weather```
+4. Now add the "Weather" app in the INSTALLED BLOCK of settings.py in WeatherWiz.
+5. Enter Code in models.py for storing cities Data.
+6. Forms.py for user input
+7.
