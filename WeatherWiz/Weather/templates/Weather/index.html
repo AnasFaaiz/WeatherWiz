@@ -5,27 +5,24 @@
     <title>Weather Wiz</title>
 
     <style>
-        body{
+        body {
             background-image: linear-gradient(to bottom, #ADD8E6, #0065BD);
             background-size: cover;
             background-position: center;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
         }
+
         .weather {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            color: black;
+            min-height: 100vh;
+            padding-top: 70px; /* Add space for fixed navbar */
         }
 
         .title {
             font-family: "Times New Roman", serif;
             font-size: 24px;
-            color: #333333;
-            text-align: left;
-            margin-left: 5px;
-            text-shadow: 0px 1px 2px rgba(0,0,0,0.6);
-            background-image: linear-gradient(to bottom, #032B44 , #0078FF );
+            background-image: linear-gradient(to bottom, #032B44, #0078FF);
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -37,145 +34,92 @@
             font-weight: bold;
             text-shadow: 0px 1px 2px rgba(0,0,0,0.6);
         }
-        .navbar-container {
-            padding: 20px;
-        }
 
         .navbar {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          background-color: transparent;
-          padding: 20px 0;
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+            z-index: 1000;
         }
 
         .navbar ul {
-          list-style: none;
-          margin: 0;
-          padding: 0;
-          display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 10px;
         }
 
-        .navbar ul li {
-          margin-right: 20px;
-        }
-
-        .navbar ul li a {
-          color: #fff;
-          text-decoration: none;
-          transition: color 0.3s ease;
-        }
-
-        .navbar ul li a:hover {
-          color: #ccc;
-        }
-
-        .navbar .logo {
-          font-size: 24px;
-          font-weight: bold;
-          color: #fff;
-        }
         .button-33 {
-          background-color: #0917e4;
-          border-radius: 100px;
-          box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
-          color: white;
-          margin-right: 5px;
-          cursor: pointer;
-          display: inline-block;
-          font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
-          padding: 7px 20px;
-          text-align: center;
-          text-decoration: none;
-          transition: all 250ms;
-          border: 0;
-          font-size: 16px;
-          user-select: none;
-          -webkit-user-select: none;
-          touch-action: manipulation;
-}
+            background-color: #0917e4;
+            border-radius: 100px;
+            box-shadow: rgba(44, 187, 99, .2) 0 -25px 18px -14px inset,rgba(44, 187, 99, .15) 0 1px 2px,rgba(44, 187, 99, .15) 0 2px 4px,rgba(44, 187, 99, .15) 0 4px 8px,rgba(44, 187, 99, .15) 0 8px 16px,rgba(44, 187, 99, .15) 0 16px 32px;
+            color: white;
+            cursor: pointer;
+            display: inline-block;
+            font-family: CerebriSans-Regular,-apple-system,system-ui,Roboto,sans-serif;
+            padding: 7px 20px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 250ms;
+            border: 0;
+            font-size: 16px;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+        }
 
         .button-33:hover {
             box-shadow: rgba(44,187,99,.35) 0 -25px 18px -14px inset,rgba(44,187,99,.25) 0 1px 2px,rgba(44,187,99,.25) 0 2px 4px,rgba(44,187,99,.25) 0 4px 8px,rgba(44,187,99,.25) 0 8px 16px,rgba(44,187,99,.25) 0 16px 32px;
             transform: scale(1.05) rotate(-1deg);
         }
-        .weather-content {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          align-items: center;
-          margin-top: 30px;
-          width: 100%;
 
+        .weather-content {
+            display: flex;
+            padding: 20px;
+            gap: 15px;
+            position: relative;
         }
+
         .weather-container {
             background-color: #dae8fb;
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 20px;
             width: 45%;
-            height: 190px;
+            height: 600px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             box-sizing: border-box;
+        }
+        .temperature-condition {
+            text-align: center;
+            margin-top: 90px;
 }
-
-        .header-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            width: 100%;
-}
-        .city-temp-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 15px;
-        }
-
-        .city {
-            font-weight: bold;
-            font-size: 2rem;
-        }
 
         .temperature {
-            margin-left: 15px;
-            font-family: 'Arial', sans-serif;
-            font-size: 1.5em;
+
+            font-size: 3.5rem;
+            font-weight: bold;
             color: #007BFF;
-            font-weight: bold;
+            margin-bottom: 10px;
         }
 
-        .area, .condition, .humidity, .wind {
-            font-family: 'Georgia', serif;
-            font-size: 1.2em;
-            color: #333;
-            flex: 1;
-        }
-
-        .condition, .wind {
-            text-align: right;
-            margin-right: 100px;
-        }
-
-        .area span, .condition span, .humidity span, .wind span {
-            font-weight: bold;
+        .condition {
+            font-size: 2rem;
             color: #444;
-            margin-left: 5px;
+            margin-bottom: 20px;
         }
+
         .hourly-forecast {
-             background-color: #dae8fb;
-             margin-left: 5px;
+            background-color: #dae8fb;
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 20px;
@@ -183,7 +127,7 @@
             height: 220px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             box-sizing: border-box;
-}
+        }
 
         .hourly-forecast h2 {
             color: #333;
@@ -193,25 +137,21 @@
             font-weight: 600;
         }
 
-       .hourly-container {
+        .hourly-container {
             display: flex;
             overflow-x: auto;
-            padding: 10px 10px;
-            gap: 20px;
+            padding: 10px;
+            gap: 15px;
             background: linear-gradient(to right, rgba(255,255,255,0.1), rgba(255,255,255,0.2));
             border-radius: 15px;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
-}
-
-        /* Hide scrollbar for cleaner look */
-        .hourly-container {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
+            scroll-behavior: smooth;
+            scroll-snap-type: x mandatory;
         }
 
         .hourly-container::-webkit-scrollbar {
-            display: none;  /* Chrome, Safari and Opera */
+            display: none;
         }
 
         .hourly-item {
@@ -224,9 +164,9 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
-            box-shadow:
-                5px 5px 10px rgba(0, 0, 0, 0.1),
-                -5px -5px 10px rgba(255, 255, 255, 0.5);
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1),
+                        -5px -5px 10px rgba(255, 255, 255, 0.5);
+            scroll-snap-align: start;
             position: relative;
             overflow: hidden;
         }
@@ -263,18 +203,6 @@
             display: inline-block;
         }
 
-        .hourly-item .temp::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 20px;
-            height: 2px;
-            background: #007BFF;
-            border-radius: 2px;
-        }
-
         .hourly-item .icon {
             font-size: 2rem;
             margin: 5px 0;
@@ -285,40 +213,16 @@
             transform: scale(1.1);
         }
 
-        /* Add smooth scroll behavior */
-        .hourly-container {
-            scroll-behavior: smooth;
-            scroll-snap-type: x mandatory;
-        }
-
-        .hourly-item {
-            scroll-snap-align: start;
-        }
-
-        /* Gradient fade effect on edges */
-        .hourly-container::before,
-        .hourly-container::after {
-            content: '';
-            position: sticky;
-            width: 50px;
-            height: 100%;
-            top: 0;
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .hourly-container::before {
-            left: 0;
-            background: linear-gradient(to right, rgba(255,255,255,0.9), transparent);
-        }
-
-        .hourly-container::after {
-            right: 0;
-            background: linear-gradient(to left, rgba(255,255,255,0.9), transparent);
-        }
-
-        /* Responsive adjustments */
         @media (max-width: 768px) {
+            .weather-content {
+                flex-direction: column;
+            }
+
+            .weather-container,
+            .hourly-forecast {
+                width: 100%;
+            }
+
             .hourly-container {
                 gap: 15px;
                 padding: 15px 8px;
@@ -341,114 +245,168 @@
                 font-size: 1.6rem;
             }
         }
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
 
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            color: #666;
+            font-size: 18px;
+        }
 
+        .search-bar {
+            padding: 8px 35px;
+            width: 300px;
+            border-radius: 25px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
 
+        .search-bar:focus {
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
+        .search-bar::placeholder {
+            color: #999;
+        }
+        .weather-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+            text-align: center;
+}
 
+        .detail-item {
+            background-color: #f0f8ff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
 
+        .detail-item h4 {
+            font-size: 1.2rem;
+            color: #007BFF;
+            margin-bottom: 10px;
+        }
 
-
-
-
+        .detail-item p {
+            font-size: 1rem;
+            color: #333;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
-
     <div class="weather">
-        <div class="navbar-container">
-            <nav class="navbar">
-                <div class="title">
-                    <h1>WeatherWiz</h1>
-                </div>
-                    <ul>
-                        <button class="button-33" role="button">About</button>
-                        <button class="button-33" role="button">Subscribe</button>
-                        <button class="button-33" role="button">Log In</button>
-                    </ul>
-            </nav>
-        </div>
+        <nav class="navbar">
+            <div class="title">
+                <h1>WeatherWiz</h1>
+            </div>
+            <ul>
+                <button class="button-33" role="button">Info</button>
+                <button class="button-33" role="button">Subscribe</button>
+                <button class="button-33" role="button">Log In</button>
+            </ul>
+        </nav>
+
         <div class="weather-content">
-            <!-- Update the weather-container div content to this -->
-        <div class="weather-container">
-            <div class="header-row">
-               <div class="city-temp-container">
-                <div class="city" style="border-bottom: 2px solid black; padding-bottom: 5px;">
-                    <span id="city">New York City</span>
+            <div class="weather-container">
+                <div class="search-container">
+                    <div class="search-icon">📍</div>
+                    <input type="text" class="search-bar" placeholder="Search for a city...">
+                     <button class="button-33" role="button" style="margin-left: 50px;">Edit</button>
                 </div>
-                <div class="temperature">
-                    <span id="temperature">25°C</span>
+                <div class="temperature-condition">
+                    <div class="temperature">27°C</div>
+                    <div class="condition">Sunny</div>
+                </div>
+                <div class="weather-details">
+                    <div class="detail-item">
+                        <h4>Feels Like</h4>
+                        <p>28°C</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Precipitation</h4>
+                        <p>10%</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Humidity</h4>
+                        <p>65%</p>
+                    </div>
+                    <div class="detail-item">
+                        <h4>Wind Speed</h4>
+                        <p>15 km/h</p>
                     </div>
                 </div>
-                <button class="button-33" role="button">Edit</button>
+
             </div>
-            <div class="info-row">
-                <div class="area">Area: <span id="area">Manhattan</span></div>
-                <div class="condition">Condition: <span id="condition">Sunny</span></div>
-            </div>
-            <div class="info-row">
-                <div class="humidity">Humidity: <span id="humidity">60%</span></div>
-                <div class="wind">WindSpeed: <span id="wind">60wps</span></div>
-            </div>
-        </div>
-        <!-- Add this after the weather-content div -->
-        <div class="hourly-forecast">
-            <h2>Hourly Forecast</h2>
-            <div class="hourly-container">
-                <div class="hourly-item">
-                    <div class="time">Now</div>
-                    <div class="temp">25°C</div>
-                    <div class="icon">☀️</div>
-                </div>
-                <div class="hourly-item">
-                    <div class="time">1 PM</div>
-                    <div class="temp">26°C</div>
-                    <div class="icon">☀️</div>
-                </div>
-                <div class="hourly-item">
-                    <div class="time">2 PM</div>
-                    <div class="temp">26°C</div>
-                    <div class="icon">⛅</div>
-                </div>
-                <div class="hourly-item">
-                    <div class="time">3 PM</div>
-                    <div class="temp">25°C</div>
-                    <div class="icon">⛅</div>
-                </div>
-                <div class="hourly-item">
-                    <div class="time">4 PM</div>
-                    <div class="temp">24°C</div>
-                    <div class="icon">☁️</div>
-                </div>
-                <div class="hourly-item">
-                    <div class="time">5 PM</div>
-                    <div class="temp">23°C</div>
-                    <div class="icon">🌧️</div>
-                </div>
-                <div class="hourly-item">
-                    <div class="time">6 PM</div>
-                    <div class="temp">22°C</div>
-                    <div class="icon">🌧️</div>
-                </div>
-                <div class="hourly-item">
-                    <div class="time">7 PM</div>
-                    <div class="temp">21°C</div>
-                    <div class="icon">☁️</div>
-                </div>
-                <div class="hourly-item">
-                    <div class="time">8 PM</div>
-                    <div class="temp">20°C</div>
-                    <div class="icon">⛅</div>
-                </div>
-                <div class="hourly-item">
-                    <div class="time">9 PM</div>
-                    <div class="temp">19°C</div>
-                    <div class="icon">🌙</div>
+
+            <div class="hourly-forecast">
+                <h2>Hourly Forecast</h2>
+                <div class="hourly-container">
+                    <div class="hourly-item">
+                        <div class="time">Now</div>
+                        <div class="temp">25°C</div>
+                        <div class="icon">☀️</div>
+                    </div>
+                    <div class="hourly-item">
+                        <div class="time">1 PM</div>
+                        <div class="temp">26°C</div>
+                        <div class="icon">☀️</div>
+                    </div>
+                    <div class="hourly-item">
+                        <div class="time">2 PM</div>
+                        <div class="temp">26°C</div>
+                        <div class="icon">⛅</div>
+                    </div>
+                    <div class="hourly-item">
+                        <div class="time">3 PM</div>
+                        <div class="temp">25°C</div>
+                        <div class="icon">⛅</div>
+                    </div>
+                    <div class="hourly-item">
+                        <div class="time">4 PM</div>
+                        <div class="temp">24°C</div>
+                        <div class="icon">☁️</div>
+                    </div>
+                    <div class="hourly-item">
+                        <div class="time">5 PM</div>
+                        <div class="temp">23°C</div>
+                        <div class="icon">🌧️</div>
+                    </div>
+                    <div class="hourly-item">
+                        <div class="time">6 PM</div>
+                        <div class="temp">22°C</div>
+                        <div class="icon">🌧️</div>
+                    </div>
+                    <div class="hourly-item">
+                        <div class="time">7 PM</div>
+                        <div class="temp">21°C</div>
+                        <div class="icon">☁️</div>
+                    </div>
+                    <div class="hourly-item">
+                        <div class="time">8 PM</div>
+                        <div class="temp">20°C</div>
+                        <div class="icon">⛅</div>
+                    </div>
+                    <div class="hourly-item">
+                        <div class="time">9 PM</div>
+                        <div class="temp">19°C</div>
+                        <div class="icon">🌙</div>
+                    </div>
                 </div>
             </div>
         </div>
-        </div>
-	</div>
+    </div>
 </body>
 </html>
-
